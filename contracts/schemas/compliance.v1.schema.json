@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "state_id",
+    "case_id",
+    "hard_fail",
+    "findings"
+  ],
+  "properties": {
+    "type": {
+      "const": "compliance.v1"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "state_id": {
+      "type": "string",
+      "pattern": "^STATE-[A-Z0-9]{8}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[A-Z0-9]{8}$"
+    },
+    "hard_fail": {
+      "type": "boolean"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "level",
+          "message"
+        ],
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warn",
+              "fail"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

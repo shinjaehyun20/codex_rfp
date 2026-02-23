@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "run_id",
+    "case_id",
+    "payload"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "pattern": "^[a-z.]+\\.v1$"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^RUN-[A-Z0-9]{8}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[A-Z0-9]{8}$"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "errors"
+      ],
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "state_id",
+    "case_id",
+    "mappings"
+  ],
+  "properties": {
+    "type": {
+      "const": "mapping.v1"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "state_id": {
+      "type": "string",
+      "pattern": "^STATE-[A-Z0-9]{8}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[A-Z0-9]{8}$"
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirement_id",
+          "section_id"
+        ],
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ-[A-Z0-9]{8}$"
+          },
+          "section_id": {
+            "type": "string",
+            "pattern": "^SEC-[A-Z0-9]{8}$"
+          }
+        }
+      }
+    }
+  }
+}

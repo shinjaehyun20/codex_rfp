@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "state_id",
+    "case_id",
+    "source_artifact_id",
+    "filename"
+  ],
+  "properties": {
+    "type": {
+      "const": "rfp.meta.v1"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "state_id": {
+      "type": "string",
+      "pattern": "^STATE-[A-Z0-9]{8}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[A-Z0-9]{8}$"
+    },
+    "source_artifact_id": {
+      "type": "string",
+      "pattern": "^ART-[A-Z0-9]{8}$"
+    },
+    "filename": {
+      "type": "string"
+    }
+  }
+}
