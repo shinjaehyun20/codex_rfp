@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "state_id",
+    "case_id",
+    "artifact_id",
+    "metadata",
+    "text_blocks"
+  ],
+  "properties": {
+    "type": {
+      "const": "rfp.parsed.v1"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "state_id": {
+      "type": "string",
+      "pattern": "^STATE-[A-Z0-9]{8}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[A-Z0-9]{8}$"
+    },
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^ART-[A-Z0-9]{8}$"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "page_count",
+        "is_scanned",
+        "ocr_applied"
+      ],
+      "properties": {
+        "page_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "is_scanned": {
+          "type": "boolean"
+        },
+        "ocr_applied": {
+          "type": "boolean"
+        }
+      }
+    },
+    "text_blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page",
+          "block_id",
+          "text"
+        ],
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "block_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "artifact_id",
+    "case_id",
+    "uri",
+    "sha256",
+    "role",
+    "mime"
+  ],
+  "properties": {
+    "type": {
+      "const": "artifact.v1"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^ART-[A-Z0-9]{8}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[A-Z0-9]{8}$"
+    },
+    "uri": {
+      "type": "string",
+      "pattern": "^s3://"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "role": {
+      "type": "string"
+    },
+    "mime": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "origin_artifact_id": {
+          "type": "string",
+          "pattern": "^ART-[A-Z0-9]{8}$"
+        }
+      }
+    }
+  }
+}
