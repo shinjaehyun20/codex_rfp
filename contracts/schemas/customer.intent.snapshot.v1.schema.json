@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "schema_version",
+    "state_id",
+    "case_id",
+    "period",
+    "channels",
+    "intents",
+    "journey_paths",
+    "personas",
+    "generated_insights"
+  ],
+  "properties": {
+    "type": {
+      "const": "customer.intent.snapshot.v1"
+    },
+    "schema_version": {
+      "const": "v1"
+    },
+    "state_id": {
+      "type": "string",
+      "pattern": "^STATE-[A-Z0-9]{8}$"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^CASE-[A-Z0-9]{8}$"
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "to": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "google",
+          "naver",
+          "youtube",
+          "community",
+          "support_center"
+        ]
+      }
+    },
+    "intents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "intent_id",
+          "label",
+          "keywords",
+          "search_volume",
+          "sentiment"
+        ],
+        "properties": {
+          "intent_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "keywords": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "search_volume": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sentiment": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "neutral",
+              "negative"
+            ]
+          }
+        }
+      }
+    },
+    "journey_paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path_id",
+          "steps",
+          "weight"
+        ],
+        "properties": {
+          "path_id": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10,
+            "items": {
+              "type": "string"
+            }
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "personas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "persona_id",
+          "name",
+          "dominant_intents",
+          "top_issues"
+        ],
+        "properties": {
+          "persona_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dominant_intents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "top_issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "generated_insights": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "insight_id",
+          "summary",
+          "priority",
+          "recommended_action"
+        ],
+        "properties": {
+          "insight_id": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "recommended_action": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
