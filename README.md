@@ -27,3 +27,6 @@ make test
 make web
 ```
 그 후 브라우저에서 `http://localhost:3000` 으로 접속합니다.
+
+## Listening Mind 벤치마킹 개발안
+- `docs/listening_mind_benchmark_mvp.md`
